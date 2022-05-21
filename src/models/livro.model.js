@@ -1,8 +1,8 @@
-'use strict';
+ 'use strict';
 
 var dbConn = require('../../config/db.config');
 
-var livro = function(livro){
+var Livro = function(livro){
     this.nome = livro.nome;
     this.autor = livro.autor;
     this.anoPublicacao = livro.anoPublicacao;
@@ -48,6 +48,9 @@ Livro.findAll = function (result){
     });
 };
 
+
+
+Livro.update = function(id, livro, result){
 dbConn.query("UPDATE livro SET nome=?, autor=?, anoPublicacao=?, editora=?, created_at?, update_at=? where id=?",
 [livro.nome, livro.autor, livro.anoPublicacao, livro.editora,id],
  function(err, res){
@@ -57,10 +60,10 @@ dbConn.query("UPDATE livro SET nome=?, autor=?, anoPublicacao=?, editora=?, crea
     }
  else{
      result(null, res);
- }}
+ }
+}
 
-);
-
+)};
 
 
 Livro.delete = function(id, result){
